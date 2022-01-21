@@ -4,13 +4,12 @@
 from setuptools import setup
 
 setup(
-    name='pyicap',
-    version='1.0b2',
+    name='chul-pyicap',
+    version='1.0b2.post1',
     description='A framework for writing ICAP servers',
     author='FÁBIÁN Tamás László',
     author_email='giganetom@gmail.com',
     url='https://github.com/netom/pyicap/',
-    download_url='https://github.com/netom/pyicap/tarball/1.0b1#egg=pyicap-1.0b1',
     license='BSD License',
     platforms='OS Independent',
     py_modules=['pyicap'],
