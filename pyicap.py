@@ -3,7 +3,6 @@
 For the ICAP specification, see RFC 3507
 """
 
-from six import PY3, binary_type, text_type
 import sys
 import time
 import random
@@ -12,44 +11,12 @@ import string
 import collections
 
 
-try:
-    from urllib.parse import urlparse
-except ImportError:
-    from urlparse import urlparse
-
-try:
-    from socketserver import (
-        TCPServer, StreamRequestHandler
-    )
-except ImportError:
-    from SocketServer import (
-        TCPServer, StreamRequestHandler
-    )
+from urllib.parse import urlparse
+from socketserver import TCPServer, StreamRequestHandler
 
 
 __version__ = "1.0"
 __all__ = ['ICAPServer', 'BaseICAPRequestHandler', 'ICAPError']
-
-
-def native(s):
-    """
-    Convert :py:class:`bytes` or :py:class:`unicode` to the native
-    :py:class:`str` type, using UTF-8 encoding if conversion is necessary.
-
-    :raise UnicodeError: The input string is not UTF-8 decodeable.
-
-    :raise TypeError: The input is neither :py:class:`bytes` nor
-        :py:class:`unicode`.
-    """
-    if not isinstance(s, (binary_type, text_type)):
-        raise TypeError("%r is neither bytes nor unicode" % s)
-    if PY3:
-        if isinstance(s, binary_type):
-            return s.decode("utf-8")
-    else:
-        if isinstance(s, text_type):
-            return s.encode("utf-8")
-    return s
 
 
 class ICAPError(Exception):
@@ -159,10 +126,10 @@ class BaseICAPRequestHandler(StreamRequestHandler):
     # where each string is of the form name[/version].
     _server_version = "BaseICAP/" + __version__
 
-    _weekdayname = [b'Mon', b'Tue', b'Wed', b'Thu', b'Fri', b'Sat', b'Sun']
+    _weekdayname = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-    _monthname = [None, b'Jan', b'Feb', b'Mar', b'Apr', b'May', b'Jun', b'Jul', b'Aug',
-                  b'Sep', b'Oct', b'Nov', b'Dec']
+    _monthname = [None, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
+                  'Sep', 'Oct', 'Nov', 'Dec']
 
     def _read_status(self):
         """Read a HTTP or ICAP status line from input stream"""
@@ -643,8 +610,8 @@ class BaseICAPRequestHandler(StreamRequestHandler):
             timestamp = time.time()
         year, month, day, hh, mm, ss, wd, y, z = time.gmtime(timestamp)
         s = "%s, %02d %3s %4d %02d:%02d:%02d GMT" % (
-                native(self._weekdayname[wd]),
-                day, native(self._monthname[month]), year,
+                self._weekdayname[wd], day,
+                self._monthname[month], year,
                 hh, mm, ss)
         return s.encode('utf-8')
 
@@ -653,7 +620,7 @@ class BaseICAPRequestHandler(StreamRequestHandler):
         now = time.time()
         year, month, day, hh, mm, ss, x, y, z = time.localtime(now)
         s = "%02d/%3s/%04d %02d:%02d:%02d" % (
-                day, native(self._monthname[month]), year, hh, mm, ss)
+                day, self._monthname[month], year, hh, mm, ss)
         return s
 
     def address_string(self):
