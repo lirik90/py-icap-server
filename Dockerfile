@@ -2,8 +2,8 @@ FROM ubuntu:18.04
 
 MAINTAINER Fabian Tamas Laszlo <giganetom@gmail.com>
 
-ADD . /pyicap
+ADD . /py-icap-server
 
-WORKDIR /pyicap
+WORKDIR /py-icap-server
 
 ENTRYPOINT ./test.sh

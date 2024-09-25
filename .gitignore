@@ -1,3 +1,5 @@
+.venv/
+py_icap_server.egg-info/
 *.pyc
 build
 dist

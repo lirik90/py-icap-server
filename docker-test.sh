@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build -t pyicap .
-docker run pyicap
+docker build -t py-icap-server .
+docker run py-icap-server

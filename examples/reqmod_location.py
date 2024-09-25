@@ -12,7 +12,7 @@ except ImportError:
 import sys
 sys.path.append('.')
 
-from pyicap import *
+from py-icap-server import *
 
 class ThreadingSimpleServer(socketserver.ThreadingMixIn, ICAPServer):
     pass
