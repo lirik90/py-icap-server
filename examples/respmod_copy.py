@@ -13,7 +13,7 @@ except ImportError:
 import sys
 sys.path.append('.')
 
-from py-icap-server import *
+from pyicapserver import *
 
 class ThreadingSimpleServer(socketserver.ThreadingMixIn, ICAPServer):
     pass
@@ -53,7 +53,7 @@ class ICAPHandler(BaseICAPRequestHandler):
         
         # Read everything from the response to a temporary file
         # This file can be placed onto a tmpfs filesystem for more performance
-        with tempfile.NamedTemporaryFile(prefix='py-icap-server.', suffix='.tmp') as upstream:
+        with tempfile.NamedTemporaryFile(prefix='pyicapserver.', suffix='.tmp') as upstream:
             self.read_into(upstream)
             if self.preview and not self.ieof:
                 self.cont()

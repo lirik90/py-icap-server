@@ -1,4 +1,4 @@
-py-icap-server
+pyicapserver
 ======
 
 A Python 3 framework for writing ICAP servers
@@ -6,7 +6,7 @@ A Python 3 framework for writing ICAP servers
 Installation
 ------------
 
-You can use the package right away, if you copy the py-icap-server.py file
+You can use the package right away, if you copy the pyicapserver.py file
 onto your PYTHONPATH, or the directory of your python module.
 
 A setup.py is provided with the package, run it to install the
@@ -18,7 +18,7 @@ pip3/easy_install doesn't know about this yet
 
 You can also install with pip or easy-install:
 
-    sudo pip install py-icap-server
+    sudo pip install pyicapserver
 
 What is ICAP?
 -------------
@@ -54,7 +54,7 @@ to copy, then completely rewrite the BaseHTTPServer class
 How it works?
 -------------
 
-You can use a framework by importing stuff from the py-icap-server package,
+You can use a framework by importing stuff from the pyicapserver package,
 extending the protocol handler class and starting the server, passing
 your handler to it:
 
@@ -65,7 +65,7 @@ your handler to it:
 import random
 import SocketServer
 
-from py-icap-server import *
+from pyicapserver import *
 
 class ThreadingSimpleServer(SocketServer.ThreadingMixIn, ICAPServer):
     pass
